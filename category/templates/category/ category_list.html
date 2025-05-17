@@ -1,0 +1,47 @@
+<!-- {% extends "base.html" %}
+
+{% block title %}All Categories - Gadget Galaxy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Product Categories</h2>
+
+  <div class="row">
+    {% for category in categories %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <p class="card-text">{{ category.description|default:"No description available." }}</p>
+          <a href="{% url 'product-by-category' category.slug %}" class="btn btn-outline-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} -->
+
+{% extends "base.html" %}
+
+{% block title %}All Categories - Gadget Galaxy{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2 class="mb-4">Product Categories</h2>
+
+  <div class="row">
+    {% for category in categories %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">{{ category.name }}</h5>
+          <p class="card-text">{{ category.description|default:"No description available." }}</p>
+          <a href="{% url 'product-by-category' category.slug %}" class="btn btn-outline-primary">View Products</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
