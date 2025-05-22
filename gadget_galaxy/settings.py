@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'gadget_galaxy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tgalaxy',
+        'NAME': 'tgalaxy2',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -141,3 +141,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
