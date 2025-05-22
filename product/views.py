@@ -23,39 +23,50 @@ def products_by_category(request, category_slug):
 
 
 
+# def product_new(request):
+#     categories = Category.objects.all()
+
+#     if request.method == 'POST':
+#         name = request.POST.get('name')
+#         description = request.POST.get('description')
+#         price = request.POST.get('price')
+#         category_id = request.POST.get('category')
+#         stock = request.POST.get('stock')  # Uncommented stock field
+#         sku = request.POST.get('sku')  # Uncommented sku field
+#         image = request.FILES.get('image')
+#         # if Product.objects.filter(sku=sku).exists():
+#         #     messages.error(request, "This SKU already exists. Please choose a different one.")
+#         #     return render(request, 'product/product_new.html', {
+#         #         'categories': categories,
+#         #         'error': 'SKU already exists',
+#         #     })
+#         # ربط الكاتيجوري
+#         category = Category.objects.get(id=category_id)
+
+#         Product.objects.create(
+#             name=name,
+#             description=description,
+#             price=price,
+#             category=category,
+#             stock=stock,  # Assuming you have a stock field
+#             sku=sku,  # Assuming you have a sku field
+#             image=image
+#         )
+
+#         return redirect('product_list')  # رجع لصفحة عرض المنتجات
+
+#     return render(request, 'product/product_new.html', {'categories': categories})
 def product_new(request):
     categories = Category.objects.all()
-
     if request.method == 'POST':
-        name = request.POST.get('name')
-        description = request.POST.get('description')
-        price = request.POST.get('price')
-        category_id = request.POST.get('category')
-        stock = request.POST.get('stock')  # Uncommented stock field
-        sku = request.POST.get('sku')  # Uncommented sku field
-        image = request.FILES.get('image')
-        # if Product.objects.filter(sku=sku).exists():
-        #     messages.error(request, "This SKU already exists. Please choose a different one.")
-        #     return render(request, 'product/product_new.html', {
-        #         'categories': categories,
-        #         'error': 'SKU already exists',
-        #     })
-        # ربط الكاتيجوري
-        category = Category.objects.get(id=category_id)
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product_list')
+    else:
+        form = ProductForm()
 
-        Product.objects.create(
-            name=name,
-            description=description,
-            price=price,
-            category=category,
-            stock=stock,  # Assuming you have a stock field
-            sku=sku,  # Assuming you have a sku field
-            image=image
-        )
-
-        return redirect('product_list')  # رجع لصفحة عرض المنتجات
-
-    return render(request, 'product/product_new.html', {'categories': categories})
+    return render(request, 'product/product_new.html', {'form': form, 'categories': categories})
 
 
 

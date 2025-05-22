@@ -15,3 +15,7 @@ class ProductHardDeleteForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = []  # لا حاجة لأي حقول هنا أيضًا
+class ProductNewForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'description', 'price', 'stock', 'sku', 'category', 'image']
