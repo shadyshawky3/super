@@ -60,7 +60,7 @@ def product_new(request):
     categories = Category.objects.all()
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
+        if form.is_valid() and form.is_bound :
             form.save()
             return redirect('product_list')
     else:
